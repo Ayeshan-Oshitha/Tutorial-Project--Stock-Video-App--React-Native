@@ -14,7 +14,7 @@ export const appwriteConfig = {
   projectId: "674bf1f3003a9db10fcf",
   databaseId: "674bf3ef001087d04510",
   userCollectionId: "674bf41e002e88950c3e",
-  videoCollectioId: "674bf45400060e3d26b8",
+  videoCollectionId: "674bf45400060e3d26b8",
   storageId: "674bf6500023044355df",
 };
 
@@ -91,3 +91,17 @@ export const getCurrentUser = async () => {
     console.log(error);
   }
 };
+
+// Get all posts
+export async function getAllPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.videoCollectionId
+    );
+
+    return posts.documents;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
